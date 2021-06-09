@@ -1,10 +1,11 @@
 import React from 'react';
+import Template from './Components/Template'
 
 function App() {
   return (
-    <div>
-      Hello Word !
-    </div>
+    <Template>
+      Hello Word !!
+    </Template>
   );
 }
 
