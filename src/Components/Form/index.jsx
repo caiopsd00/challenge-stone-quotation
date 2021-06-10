@@ -48,6 +48,9 @@ function Form(props) {
                     Converter
                 </div>
             </div>
+            <div className={classes.info}>
+                Cotação: R$ 4,15
+            </div>
         </div >
     );
 }
@@ -78,6 +81,11 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'space-evenly',
         alignItems: 'center'
+    },
+    info: {
+        paddingTop: 20,
+        fontSize: 14,
+        fontFamily: 'Noto Sans JP',
     }
 });
 

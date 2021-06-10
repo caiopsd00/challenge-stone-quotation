@@ -59,8 +59,9 @@ const useStyles = makeStyles({
         color: '#8C9CAD'
     },
     contentData: {
+        marginTop: 50,
         width: '100%',
-        height: '80%',
+        height: '90%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
