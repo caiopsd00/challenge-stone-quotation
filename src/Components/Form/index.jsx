@@ -1,17 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
+import TextInput from '../TextInput'
+import { makeStyles } from '@material-ui/core/styles';
 
 function Form(props) {
+    const classes = useStyles();
+    const [dolar, setDolar] = useState('0')
+    const [tax, setTax] = useState('0')
     return (
         <div>
-            <div 
+            <div className={classes.label}>
+                <TextInput 
+                    label="Dólar" 
+                    value={dolar} 
+                    setValue={setDolar} 
+                    money 
+                />
+                <TextInput 
+                    label="Taxa do Estado" 
+                    value={tax} 
+                    setValue={setTax} 
+                    percent
+                />
+            </div>
+            <div
                 onClick={() => props.setPageForm(false)}
-                style={{paddingBottom: 30, textDecoration: 'underline', cursor: 'pointer'}}
+                className={classes.navButton}
             >
                 Ir para resultado
             </div>
-            Formulário
         </div >
     );
 }
+
+const useStyles = makeStyles({
+    navButton: { 
+        paddingTop: 10, 
+        textDecoration: 'underline', 
+        cursor: 'pointer' 
+    },
+    label: { 
+        display: 'flex', 
+        flexDirection: 'row' 
+    }
+});
 
 export default Form;
