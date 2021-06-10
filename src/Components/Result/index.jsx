@@ -1,11 +1,13 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 
 function Result(props) {
+    const classes = useStyles();
     return (
         <div>
-            <div 
+            <div
                 onClick={() => props.setPageForm(true)}
-                style={{paddingBottom: 30, textDecoration: 'underline', cursor: 'pointer'}}
+                className={classes.navButton}
             >
                 Ir para formulário
             </div>
@@ -13,5 +15,13 @@ function Result(props) {
         </div >
     );
 }
+
+const useStyles = makeStyles({
+    navButton: { 
+        paddingBottom: 30, 
+        textDecoration: 'underline', 
+        cursor: 'pointer' 
+    }
+});
 
 export default Result;
