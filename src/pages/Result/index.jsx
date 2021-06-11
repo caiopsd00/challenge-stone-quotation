@@ -78,6 +78,6 @@ const useStyles = makeStyles({
     value: {
         fontWeight: 500,
     }
-});
+})
 
 export default Result;

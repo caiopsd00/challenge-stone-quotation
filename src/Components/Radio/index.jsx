@@ -16,14 +16,14 @@ function Radio(props) {
                         <div className={
                             props.select === item.value ?
                                 classes.radioButtonSelected
-                                :
+                            :
                                 classes.radioButton
                         }>
-                            {props.select === item.value ?
+                            {props.select === item.value ? (
                                 <div className={classes.check} />
-                                :
+                            ) : (
                                 false
-                            }
+                            )}
                         </div>
                         <div className={classes.radioText}>{item.label}</div>
                     </div>

@@ -7,7 +7,11 @@ function Template(props) {
         <div className={classes.background}>
             <div className={classes.container}>
                 <div className={classes.header}>
-                    <img src="../imgs/logo.jpeg" style={{ height: 81, width: 163, backgroundColor: "#FFF" }} alt="Logotipo da marca" />
+                    <img 
+                        src="../imgs/logo.jpeg" 
+                        style={{ height: 81, width: 163, backgroundColor: '#FFF' }} 
+                        alt="Logotipo da marca" 
+                    />
                     <div style={{ marginLeft: 20 }}>
                         <div className={classes.date}>
                             14 de  janeiro | 21:00 UTC
@@ -21,7 +25,7 @@ function Template(props) {
                     {props.children}
                 </div>
             </div>
-        </div >
+        </div>
     );
 }
 

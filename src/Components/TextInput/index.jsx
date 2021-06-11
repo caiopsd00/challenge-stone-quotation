@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 function TextInput(props) {
     const classes = useStyles();
-    const [formattedValue, setFormattedValue] = useState('0')
+    const [formattedValue, setFormattedValue] = useState('0');
     
     useEffect(() => {
         if (props.money) {
@@ -13,7 +13,7 @@ function TextInput(props) {
         if (props.percent) {
             formatValue(props.value);
         }
-    }, [props.money, props.value, props.percent])
+    }, [props.money, props.value, props.percent]);
 
     const formatValue = (value) => {
         switch (value.length) {
@@ -34,7 +34,6 @@ function TextInput(props) {
                 }
                 break;
             default:
-                console.log(value);
                 const number = value.substring(0, (value.length - 2));
                 const decimal = value.substring((value.length - 2), (value.length));
                 if (props.money) {
@@ -61,7 +60,7 @@ function TextInput(props) {
             if (value[0] === '0') {
                 cleanValue = value.slice(-1);
             }
-            props.setValue(cleanValue)
+            props.setValue(cleanValue);
             formatValue(cleanValue);
         }
     }
@@ -83,6 +82,7 @@ function TextInput(props) {
             }
         }
     }
+
     return (
         <div className={classes.container}>
             <div className={classes.label}>
@@ -92,7 +92,7 @@ function TextInput(props) {
                 className={props.value === '0' ? classes.cleanInput : classes.input}
                 value={formattedValue}
                 onChange={event => {
-                    handleChange(event.target.value)
+                    handleChange(event.target.value);
                 }}
             />
         </div>
@@ -132,4 +132,3 @@ const useStyles = makeStyles({
 });
 
 export default TextInput;
-

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import TextInput from '../TextInput'
-import Radio from '../Radio'
+import TextInput from '../../components/TextInput';
+import Radio from '../../components/Radio';
 import { makeStyles } from '@material-ui/core/styles';
 import SyncAltIcon from '@material-ui/icons/SyncAlt';
 
 function Form(props) {
     const classes = useStyles();
-    const [dolar, setDolar] = useState('0')
-    const [tax, setTax] = useState('0')
-    const [typeBuy, setTypeBuy] = useState('money')
+    const [dolar, setDolar] = useState('0');
+    const [tax, setTax] = useState('0');
+    const [typeBuy, setTypeBuy] = useState('money');
 
     const listOfTypesBuy = [
         { value: 'money', label: 'Dinheiro' },

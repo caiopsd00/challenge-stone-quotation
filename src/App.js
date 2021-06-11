@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import Template from './Components/Template'
-import Form from './Components/Form'
-import Result from './Components/Result'
+import Template from './components/Template';
+import Form from './pages/Form';
+import Result from './pages/Result';
 
 function App() {
   const [pageForm, setPageForm] = useState(true);
 
   return (
     <Template>
-      {pageForm ? <Form setPageForm={setPageForm} /> : <Result setPageForm={setPageForm} />}
+      {pageForm ? (
+        <Form setPageForm={setPageForm} />
+       ) : (
+        <Result setPageForm={setPageForm} />
+       )}
     </Template>
   );
 }
