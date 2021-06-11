@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axiosInstance from '../../config/axios'
 import TextInput from '../../components/TextInput';
 import Radio from '../../components/Radio';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,6 +10,14 @@ function Form(props) {
     const [dolar, setDolar] = useState('0');
     const [tax, setTax] = useState('0');
     const [typeBuy, setTypeBuy] = useState('money');
+  
+    useEffect(() => {
+        async function getData(){
+            const result = await axiosInstance.get('json/last/USD-BRL');
+            props.setQuotation(result.data.USDBRL.bid.replaceAll('.', ','))
+        }
+        getData();
+    }, []);
 
     const listOfTypesBuy = [
         { value: 'money', label: 'Dinheiro' },
@@ -49,7 +58,10 @@ function Form(props) {
                 </div>
             </div>
             <div className={classes.info}>
-                Cotação: R$ 4,15
+                <div className={classes.quotationTitle}>
+                    Cotação:    
+                </div> 
+                R$ {props.quotation}
             </div>
         </div >
     );
@@ -86,6 +98,12 @@ const useStyles = makeStyles({
         paddingTop: 20,
         fontSize: 14,
         fontFamily: 'Noto Sans JP',
+        display: 'flex',
+        flexDirection: 'row'
+    },
+    quotationTitle: {
+        fontWeight: '600', 
+        paddingRight: 4
     }
 });
 

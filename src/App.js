@@ -5,13 +5,14 @@ import Result from './pages/Result';
 
 function App() {
   const [pageForm, setPageForm] = useState(true);
+  const [quotation, setQuotation] = useState(null)
 
   return (
     <Template>
       {pageForm ? (
-        <Form setPageForm={setPageForm} />
+        <Form setPageForm={setPageForm} quotation={quotation} setQuotation={setQuotation} />
        ) : (
-        <Result setPageForm={setPageForm} />
+        <Result setPageForm={setPageForm} quotation={quotation} />
        )}
     </Template>
   );
