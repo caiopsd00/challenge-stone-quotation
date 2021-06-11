@@ -6,14 +6,15 @@ function TextInput(props) {
     const classes = useStyles();
     const [formattedValue, setFormattedValue] = useState('0');
     
-    useEffect(() => {
-        if (props.money) {
-            formatValue(props.value);
+    const parseString = (value) => {
+        const newValue = (value * 100);
+        const ceilValue = Math.ceil(newValue);
+        if(ceilValue - newValue > 0.5){
+            return Math.floor(newValue).toString()
+        } else {
+            return ceilValue.toString();
         }
-        if (props.percent) {
-            formatValue(props.value);
-        }
-    }, [props.money, props.value, props.percent]);
+    }
 
     const formatValue = (value) => {
         switch (value.length) {
@@ -46,9 +47,19 @@ function TextInput(props) {
         }
     }
 
+    useEffect(() => {
+        if (props.money) {
+            formatValue(parseString(props.value));
+        }
+        if (props.percent) {
+            formatValue(parseString(props.value));
+        }
+    }, [props.money, props.value, props.percent]);
+
     const removeZeros = (value) => {
+        let finalValue = value;
         if (value === '') {
-            props.setValue('0')
+            finalValue = 0;
             if (props.money) {
                 setFormattedValue('$0,00');
             }
@@ -60,21 +71,21 @@ function TextInput(props) {
             if (value[0] === '0') {
                 cleanValue = value.slice(-1);
             }
-            props.setValue(cleanValue);
-            formatValue(cleanValue);
+            finalValue = cleanValue;
         }
+        props.setValue((parseFloat(finalValue) / 100));
     }
 
     const handleChange = (newValue) => {
+        const oldValue = parseString(props.value);
         if (formattedValue.length > newValue.length) {
-            const oldValue = props.value;
             removeZeros(oldValue.slice(0, -1));
         } else {
             let iteratorOld = (formattedValue.length - 1);
             for (let iterator = (newValue.length - 1); iterator >= 0; iterator--) {
                 if (newValue[iterator] !== formattedValue[iteratorOld]) {
                     if (newValue[iterator] !== ' ') {
-                        removeZeros(props.value + newValue[iterator]);
+                        removeZeros(oldValue + newValue[iterator]);
                     }
                     break;
                 }
@@ -89,10 +100,12 @@ function TextInput(props) {
                 {props.label}
             </div>
             <OutlinedInput
-                className={props.value === '0' ? classes.cleanInput : classes.input}
+                className={props.value === 0 ? classes.cleanInput : classes.input}
                 value={formattedValue}
                 onChange={event => {
-                    handleChange(event.target.value);
+                    if(event.target.value.length <= 17){
+                        handleChange(event.target.value);
+                    }
                 }}
             />
         </div>
