@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axiosInstance from '../../config/axios'
+import React, { useState } from 'react';
 import TextInput from '../../components/TextInput';
 import Radio from '../../components/Radio';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,14 +9,6 @@ function Form(props) {
     const [dolar, setDolar] = useState('0');
     const [tax, setTax] = useState('0');
     const [typeBuy, setTypeBuy] = useState('money');
-  
-    useEffect(() => {
-        async function getData(){
-            const result = await axiosInstance.get('json/last/USD-BRL');
-            props.setQuotation(result.data.USDBRL.bid.replaceAll('.', ','))
-        }
-        getData();
-    }, []);
 
     const listOfTypesBuy = [
         { value: 'money', label: 'Dinheiro' },
@@ -61,7 +52,7 @@ function Form(props) {
                 <div className={classes.quotationTitle}>
                     Cotação:    
                 </div> 
-                R$ {props.quotation}
+                R$ {props.results.quotation}
             </div>
         </div >
     );
