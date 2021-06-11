@@ -1,8 +1,51 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useState } from 'react';
 
+const formatMonth = (date) => {
+    const numericMonth = date.getUTCMonth();
+    switch(numericMonth){
+        case 0:
+            return "Janeiro";
+        case 1:
+            return "Fevereiro";
+        case 2:
+            return "Março";
+        case 3:
+            return "Abril";
+        case 4:
+            return "Maio";
+        case 5:
+            return "Junho";
+        case 6:
+            return "Julho";
+        case 7:
+            return "Agosto";
+        case 8:
+            return "Setembro";
+        case 9:
+            return "Outubro";
+        case 10:
+            return "Novembro";
+        case 11:
+            return "Dezembro";
+        default:
+            return "";
+    }
+}
 function Template(props) {
     const classes = useStyles();
+    const [now, setNow] = useState(null);
+
+    useEffect(() => {
+        const d = new Date();
+        const hour = d.getUTCHours() < 9 ? "0" + d.getUTCHours() : d.getUTCHours();
+        const minute = d.getUTCMinutes() < 9 ? "0" + d.getUTCMinutes() : d.getUTCMinutes();
+        const formattedDate = d.getUTCDate() + " de " + formatMonth(d) + " | " + hour + 
+            ":" + minute + " UTC" 
+        setNow(formattedDate);
+    }, [])
+
     return (
         <div className={classes.background}>
             <div className={classes.container}>
@@ -12,10 +55,10 @@ function Template(props) {
                         style={{ height: 81, width: 163, backgroundColor: '#FFF' }} 
                         alt="Logotipo da marca" 
                     />
-                    <div style={{ marginLeft: 20 }}>
+                    <div style={{ marginLeft: 48 }}>
                         <div className={classes.date}>
-                            14 de  janeiro | 21:00 UTC
-                      </div>
+                            {now}
+                        </div>
                         <div className={classes.dataFont}>
                             Dados de câmbio disponibilizados pela Morningstar.
                       </div>
