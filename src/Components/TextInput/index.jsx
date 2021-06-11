@@ -85,7 +85,9 @@ function TextInput(props) {
             for (let iterator = (newValue.length - 1); iterator >= 0; iterator--) {
                 if (newValue[iterator] !== formattedValue[iteratorOld]) {
                     if (newValue[iterator] !== ' ') {
-                        removeZeros(oldValue + newValue[iterator]);
+                        if(Number.isInteger(parseInt(newValue[iterator]))){
+                            removeZeros(oldValue + newValue[iterator]);
+                        }
                     }
                     break;
                 }
