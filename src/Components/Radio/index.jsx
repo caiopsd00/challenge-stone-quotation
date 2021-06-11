@@ -12,7 +12,9 @@ function Radio(props) {
             <div className={classes.content}>
                 {props.list.map(item => (
                     <div
-                        className={classes.radio} onClick={() => props.setSelect(item.value)}>
+                        key={item.value}
+                        className={classes.radio} onClick={() => props.setSelect(item.value)}
+                    >
                         <div className={
                             props.select === item.value ?
                                 classes.radioButtonSelected
