@@ -109,6 +109,7 @@ function TextInput(props) {
                         handleChange(event.target.value);
                     }
                 }}
+                onKeyPress={props.onKeyPress}
             />
         </div>
     );

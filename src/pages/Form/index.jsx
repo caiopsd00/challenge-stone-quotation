@@ -35,12 +35,22 @@ function Form(props) {
                     value={price}
                     setValue={setPrice}
                     money
+                    onKeyPress={e => {
+                        if(e.key === 'Enter'){
+                            convertPrice()
+                        }
+                    }}
                 />
                 <TextInput
                     label="Taxa do Estado"
                     value={tax}
                     setValue={setTax}
                     percent
+                    onKeyPress={e => {
+                        if(e.key === 'Enter'){
+                            convertPrice()
+                        }
+                    }}
                 />
             </div>
             <div style={{ paddingTop: 15 }}>
@@ -67,9 +77,9 @@ function Form(props) {
             </div>
             <div className={classes.info}>
                 <div className={classes.quotationTitle}>
-                    Cotação:
+                    Cotação do dólar:
                 </div>
-                R$ {props.results.quotation}
+                R$ {props.results.quotation} (atualiza a cada 30 segundos)
             </div>
         </div >
     );
