@@ -38,9 +38,9 @@ function Result(props) {
             realWithTax
         })
     }, [quotation, typeBuy, price, tax])
-    
+
     return (
-        <div>
+        <>
             <div
                 onClick={() => props.setPageForm(true)}
                 className={classes.navButton}
@@ -50,33 +50,55 @@ function Result(props) {
                     Voltar
                 </div>
             </div>
-            <div className={classes.announcement}>
-                O resultado do cálculo é
+            <div>
+                <div className={classes.announcement}>
+                    O resultado do cálculo é
+                </div>
+                <div className={classes.result}>
+                    R$ {results.realWithTax}
+                </div>
             </div>
-            <div className={classes.result}>
-                R$ {results.realWithTax}
+            <div className={classes.directionRow}>
+                <div className={classes.infos}>
+                    Total em dólar com imposto:
+                </div>
+                <div className={classes.value}>
+                    U$ {results.dolarWithTax}
+                </div>
             </div>
-            <div className={classes.infos}>
-                Total em dólar sem imposto:
-                <span className={classes.value}> U$ {results.dolarWithOutTax}</span>
+            <div className={classes.directionRow}>
+                <div className={classes.infos}>
+                    Total em dólar sem imposto:
+                </div>
+                <div className={classes.value}>
+                    U$ {results.dolarWithOutTax}
+                </div>
             </div>
-            <div className={classes.infos}>
-                Total em dólar com imposto:
-                <span className={classes.value}> U$ {results.dolarWithTax}</span>
+            <div className={classes.directionRow}>
+                <div className={classes.infos}>
+                    Total em real sem imposto:
+                </div>
+                <div className={classes.value}>
+                    R$ {results.realWithOutTax}
+                </div>
             </div>
-            <div className={classes.infos}>
-                Total em real sem imposto:
-                <span className={classes.value}> R$ {results.realWithOutTax}</span>
+            <div className={classes.directionRow}>
+                <div className={classes.infos}>
+                    Compra no {typeBuy === "card" ? "cartão" : "dinheiro"} e taxa de
+                </div>
+                <div className={classes.value}>
+                    {tax}%
+                </div>
             </div>
-            <div className={classes.infos}>
-                Compra no {typeBuy === "card" ? "cartão" : "dinheiro"} e taxa de
-                <span className={classes.value}> {tax}%</span>
+            <div className={classes.directionRow}>
+                <div className={classes.infos}>
+                    Cotação do dólar:
+                </div>
+                <div className={classes.value}>
+                    $ 1,00 = R$ {floatToReal(quotation)}
+                </div>
             </div>
-            <div className={classes.infos}>
-                Cotação do dólar:
-                <span className={classes.value}> $ 1,00 = R$ {floatToReal(quotation)}</span>
-            </div>
-        </div >
+        </>
     );
 }
 
@@ -112,19 +134,38 @@ const useStyles = makeStyles({
         fontSize: 20
     },
     result: {
-        paddingBottom: 32,
+        flexWrap: 'wrap',
         fontWeight: '600',
         fontFamily: 'Noto Sans JP',
-        fontSize: 64,
-        color: '#00AB63'
+        color: '#00AB63',
+        '@media(max-width: 599px)': {
+            fontSize: 30,
+            paddingBottom: 10,
+        },
+        '@media(min-width: 600px) and (max-width: 1199px)': {
+            fontSize: 48,
+            paddingBottom: 20,
+        },
+        '@media(min-width: 1200px)': {
+            fontSize: 64,
+            paddingBottom: 32,
+        },
+    },
+    directionRow: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     infos: {
+        paddingRight: 5,
         fontFamily: 'Roboto',
         fontWeight: 600,
         color: '#6E7E90'
     },
     value: {
         fontWeight: 500,
+        fontFamily: 'Roboto',
+        color: '#6E7E90'
     }
 })
 
