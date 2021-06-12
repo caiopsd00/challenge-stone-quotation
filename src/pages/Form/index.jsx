@@ -17,8 +17,8 @@ function Form(props) {
 
     const convertPrice = () => {
         if(price !== 0 && tax !== 0){
-            props.setResults(results => ({
-                ...results,
+            props.setInputData(inputData => ({
+                ...inputData,
                 typeBuy,
                 price,
                 tax
@@ -79,7 +79,7 @@ function Form(props) {
                 <div className={classes.quotationTitle}>
                     Cotação do dólar:
                 </div>
-                R$ {props.results.quotation} (atualiza a cada 30 segundos)
+                R$ {props.inputData.quotation} (atualiza a cada 30 segundos)
             </div>
         </div >
     );

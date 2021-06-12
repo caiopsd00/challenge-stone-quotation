@@ -1,33 +1,79 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { toReal, toFloat } from '../../helpers'
+
+const iof = {
+    card: 6.38,
+    money: 1.1
+};
 
 function Result(props) {
     const classes = useStyles();
+    const {
+        quotation,
+        typeBuy,
+        price,
+        tax
+    } = props.inputData;
+
+    const [results, setResults] = useState({
+        dolarWithOutTax: 0,
+        dolarWithTax: 0,
+        realWithOutTax: 0,
+        realWithTax: 0
+    })
+
+    useEffect(() => {
+        const finalTaxes = (tax + iof[typeBuy] + 100) / 100;
+
+        const dolarWithOutTax = toReal(price);
+        const dolarWithTax = toReal(price * finalTaxes);
+        const realWithOutTax = toReal(price * toFloat(quotation));
+        const realWithTax = toReal(parseFloat(price * finalTaxes) * toFloat(quotation));
+        setResults({
+            dolarWithOutTax,
+            dolarWithTax,
+            realWithOutTax,
+            realWithTax
+        })
+    }, [props.inputData])
     return (
         <div>
-        <div
-            onClick={() => props.setPageForm(true)}
-            className={classes.navButton}
-        >
-            <div className={classes.fontButton}>
-                <ArrowBackIcon style={{color: '#8C9CAD'}} />
-                Voltar
+            <div
+                onClick={() => props.setPageForm(true)}
+                className={classes.navButton}
+            >
+                <div className={classes.fontButton}>
+                    <ArrowBackIcon style={{ color: '#8C9CAD' }} />
+                    Voltar
+                </div>
             </div>
-        </div>
             <div className={classes.announcement}>
                 O resultado do cálculo é
             </div>
             <div className={classes.result}>
-                R$ 240,56
+                R$ {results.realWithTax}
             </div>
             <div className={classes.taxes}>
-                Compra no dinheiro e taxa de
-                <span className={classes.value}> 5.3%</span>
+                Total em dólar sem imposto:
+                <span className={classes.value}> U$ {results.dolarWithOutTax}</span>
             </div>
             <div className={classes.taxes}>
-                Cotação do dólar: 
-                <span className={classes.value}> $ 1,00 = R$ 5,20</span>
+                Total em dólar com imposto:
+                <span className={classes.value}> U$ {results.dolarWithTax}</span>
+            </div>
+            <div className={classes.taxes}>
+                Total em real sem imposto:
+                <span className={classes.value}> R$ {results.realWithOutTax}</span>
+            </div>
+            <div className={classes.taxes}>
+                Compra no {typeBuy === "card" ? "cartão" : "dinheiro"} e taxa de
+                <span className={classes.value}> {tax}%</span>
+            </div>
+            <div className={classes.taxes}>
+                Cotação do dólar:
+                <span className={classes.value}> $ 1,00 = R$ {quotation}</span>
             </div>
         </div >
     );

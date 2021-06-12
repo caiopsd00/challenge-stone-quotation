@@ -6,28 +6,30 @@ import Result from './pages/Result';
 
 function App() {
   const [pageForm, setPageForm] = useState(true);
-  const [results, setResults] = useState({
+  const [inputData, setInputData] = useState({
     quotation: 0,
     typeBuy: "money",
     price: 0,
     tax: 0
   })
-  
+
   useEffect(() => {
-      async function getData(){
-          const result = await axiosInstance.get('json/last/USD-BRL');
-          setResults(results => ({...results, quotation: result.data.USDBRL.bid.replaceAll('.', ',')}))
+    if (pageForm) {
+      async function getData() {
+        const result = await axiosInstance.get("json/last/USD-BRL");
+        setInputData(inputData => ({ ...inputData, quotation: result.data.USDBRL.bid.replaceAll('.', ',') }))
       }
       getData();
-  }, []);
+    }
+  }, [pageForm]);
 
   return (
     <Template>
       {pageForm ? (
-        <Form setPageForm={setPageForm} results={results} setResults={setResults} />
-       ) : (
-        <Result setPageForm={setPageForm} results={results} />
-       )}
+        <Form setPageForm={setPageForm} inputData={inputData} setInputData={setInputData} />
+      ) : (
+        <Result setPageForm={setPageForm} inputData={inputData} />
+      )}
     </Template>
   );
 }
