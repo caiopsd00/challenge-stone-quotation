@@ -44,7 +44,7 @@ function Template(props) {
         const formattedDate = d.getUTCDate() + " de " + formatMonth(d) + " | " + hour + 
             ":" + minute + " UTC" 
         setNow(formattedDate);
-    }, [])
+    }, [props.children])
 
     return (
         <div className={classes.background}>
