@@ -41,6 +41,7 @@ const useStyles = makeStyles({
     },
     label: {
         fontFamily: 'Roboto',
+        color: '#2E3742',
         paddingBottom: 16,
         fontWeight: 600,
         fontSize: 18
@@ -83,8 +84,9 @@ const useStyles = makeStyles({
         borderRadius: 12
     },
     radioText: {
+        color: '#2E3742',
         fontFamily: 'Roboto',
-        fontWeight: '590',
+        fontWeight: '500',
         fontSize: 16,
     }
 });

@@ -95,12 +95,13 @@ const useStyles = makeStyles({
     },
     label: {
         fontFamily: 'Roboto',
+        color: '#2E3742',
         paddingBottom: 16,
         fontWeight: 600,
         fontSize: 18
     },
     input: {
-        color: 'black',
+        color: '#2E3742',
         fontFamily: 'Noto Sans JP',
         fontSize: 16,
         borderRadius: 4,

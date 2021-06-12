@@ -120,7 +120,7 @@ const useStyles = makeStyles({
         width: '100%',
         fontSize: 16,
         fontFamily: 'Noto Sans JP',
-        color: '#FFF',
+        color: '#FFFFFF',
         display: 'flex',
         justifyContent: 'space-evenly',
         alignItems: 'center'

@@ -55,23 +55,23 @@ function Result(props) {
             <div className={classes.result}>
                 R$ {results.realWithTax}
             </div>
-            <div className={classes.taxes}>
+            <div className={classes.infos}>
                 Total em dólar sem imposto:
                 <span className={classes.value}> U$ {results.dolarWithOutTax}</span>
             </div>
-            <div className={classes.taxes}>
+            <div className={classes.infos}>
                 Total em dólar com imposto:
                 <span className={classes.value}> U$ {results.dolarWithTax}</span>
             </div>
-            <div className={classes.taxes}>
+            <div className={classes.infos}>
                 Total em real sem imposto:
                 <span className={classes.value}> R$ {results.realWithOutTax}</span>
             </div>
-            <div className={classes.taxes}>
+            <div className={classes.infos}>
                 Compra no {typeBuy === "card" ? "cartão" : "dinheiro"} e taxa de
                 <span className={classes.value}> {tax}%</span>
             </div>
-            <div className={classes.taxes}>
+            <div className={classes.infos}>
                 Cotação do dólar:
                 <span className={classes.value}> $ 1,00 = R$ {quotation}</span>
             </div>
@@ -104,6 +104,7 @@ const useStyles = makeStyles({
     },
     announcement: {
         paddingTop: 32,
+        color: '#45505E',
         paddingBottom: 8,
         fontWeight: '600',
         fontFamily: 'Noto Sans JP',
@@ -116,7 +117,7 @@ const useStyles = makeStyles({
         fontSize: 64,
         color: '#00AB63'
     },
-    taxes: {
+    infos: {
         fontFamily: 'Roboto',
         fontWeight: 600,
         color: '#6E7E90'
