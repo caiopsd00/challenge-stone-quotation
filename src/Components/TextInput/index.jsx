@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import { makeStyles } from '@material-ui/core/styles';
+import { inputToReal } from '../../helpers';
 
 function TextInput(props) {
     const classes = useStyles();
     const [formattedValue, setFormattedValue] = useState('0');
-    
+
     const parseString = (value) => {
         const newValue = (value * 100);
         const ceilValue = Math.ceil(newValue);
-        if(ceilValue - newValue > 0.5){
+        if (ceilValue - newValue > 0.5) {
             return Math.floor(newValue).toString()
         } else {
             return ceilValue.toString();
@@ -17,44 +18,17 @@ function TextInput(props) {
     }
 
     const formatValue = (value) => {
-        switch (value.length) {
-            case 1:
-                if (props.money) {
-                    setFormattedValue('$0,0' + value);
-                }
-                if (props.percent) {
-                    setFormattedValue('0,0' + value + '%');
-                }
-                break;
-            case 2:
-                if (props.money) {
-                    setFormattedValue('$0,' + value);
-                }
-                if (props.percent) {
-                    setFormattedValue('0,' + value + '%');
-                }
-                break;
-            default:
-                const number = value.substring(0, (value.length - 2));
-                const decimal = value.substring((value.length - 2), (value.length));
-                if (props.money) {
-                    setFormattedValue('$' + number + ',' + decimal);
-                }
-                if (props.percent) {
-                    setFormattedValue(number + ',' + decimal + '%');
-                }
-                break;
+        if (props.money) {
+            setFormattedValue('$' + inputToReal(value));
+        }
+        if (props.percent) {
+            setFormattedValue(inputToReal(value) + '%');
         }
     }
 
     useEffect(() => {
-        if (props.money) {
-            formatValue(parseString(props.value));
-        }
-        if (props.percent) {
-            formatValue(parseString(props.value));
-        }
-    }, [props.money, props.value, props.percent]);
+        formatValue(parseString(props.value));
+    }, [props.value]);
 
     const removeZeros = (value) => {
         let finalValue = value;
@@ -85,7 +59,7 @@ function TextInput(props) {
             for (let iterator = (newValue.length - 1); iterator >= 0; iterator--) {
                 if (newValue[iterator] !== formattedValue[iteratorOld]) {
                     if (newValue[iterator] !== ' ') {
-                        if(Number.isInteger(parseInt(newValue[iterator]))){
+                        if (Number.isInteger(parseInt(newValue[iterator]))) {
                             removeZeros(oldValue + newValue[iterator]);
                         }
                     }
@@ -105,7 +79,7 @@ function TextInput(props) {
                 className={props.value === 0 ? classes.cleanInput : classes.input}
                 value={formattedValue}
                 onChange={event => {
-                    if(event.target.value.length <= 17){
+                    if (event.target.value.length <= 17) {
                         handleChange(event.target.value);
                     }
                 }}

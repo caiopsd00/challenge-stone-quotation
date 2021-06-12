@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { toReal, toFloat } from '../../helpers'
+import { floatToReal, toFloat } from '../../helpers'
 
 const iof = {
     card: 6.38,
@@ -27,10 +27,10 @@ function Result(props) {
     useEffect(() => {
         const finalTaxes = (tax + iof[typeBuy] + 100) / 100;
 
-        const dolarWithOutTax = toReal(price);
-        const dolarWithTax = toReal(price * finalTaxes);
-        const realWithOutTax = toReal(price * toFloat(quotation));
-        const realWithTax = toReal(parseFloat(price * finalTaxes) * toFloat(quotation));
+        const dolarWithOutTax = floatToReal(price);
+        const dolarWithTax = floatToReal(price * finalTaxes);
+        const realWithOutTax = floatToReal(price * toFloat(quotation));
+        const realWithTax = floatToReal(price * finalTaxes * toFloat(quotation));
         setResults({
             dolarWithOutTax,
             dolarWithTax,
