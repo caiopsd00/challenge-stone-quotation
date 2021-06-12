@@ -17,7 +17,7 @@ function App() {
     if (pageForm) {
       async function getData() {
         const result = await axiosInstance.get("json/last/USD-BRL");
-        setInputData(inputData => ({ ...inputData, quotation: result.data.USDBRL.bid.replaceAll('.', ',') }))
+        setInputData(inputData => ({ ...inputData, quotation: result.data.USDBRL.bid }))
       }
       getData();
     }

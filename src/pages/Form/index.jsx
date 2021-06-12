@@ -3,6 +3,7 @@ import TextInput from '../../components/TextInput';
 import Radio from '../../components/Radio';
 import { makeStyles } from '@material-ui/core/styles';
 import SyncAltIcon from '@material-ui/icons/SyncAlt';
+import { floatToReal } from '../../helpers';
 
 function Form(props) {
     const classes = useStyles();
@@ -77,7 +78,7 @@ function Form(props) {
             </div>
             <div className={classes.infos}>
                 Cotação do dólar:
-                <span className={classes.value}> R$ {props.inputData.quotation} (atualiza a cada 30 segundos)</span>
+                <span className={classes.value}> R$ {floatToReal(props.inputData.quotation)} (atualiza a cada 30 segundos)</span>
             </div>
         </div >
     );

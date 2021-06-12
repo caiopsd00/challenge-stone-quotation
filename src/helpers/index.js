@@ -12,15 +12,21 @@ export function inputToReal(value){
 }
 
 export function floatToReal(value) {
-    let newValue = (parseFloat(value) * 100)
-    const floorValue = Math.floor(newValue)
-    if (newValue - floorValue > 0) {
-        newValue = Math.ceil(newValue);
-    }
-    newValue = newValue.toString();
+    let newValue = roundReal(value).toString();
     return inputToReal(newValue);
 }
 
-export function toFloat(value) {
+export function roundReal(value) {
+    let newValue = (parseFloat(value) * 100)
+    const floorValue = Math.floor(newValue)
+    if(newValue - floorValue < 0.0001 && newValue - floorValue > 0){
+        newValue = floorValue;
+    }else if(newValue - floorValue < 1){
+        newValue = Math.ceil(newValue);
+    }
+    return newValue;
+}
+
+export function stringToFloat(value) {
     return parseFloat(value.replace(',', '.'))
 }

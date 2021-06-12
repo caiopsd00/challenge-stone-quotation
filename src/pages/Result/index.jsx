@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { floatToReal, toFloat } from '../../helpers'
+import { floatToReal, stringToFloat } from '../../helpers'
 
 const iof = {
     card: 6.38,
@@ -25,19 +25,20 @@ function Result(props) {
     })
 
     useEffect(() => {
-        const finalTaxes = (tax + iof[typeBuy] + 100) / 100;
+        const finalTaxes = ((tax + 100) / 100) * ((iof[typeBuy] + 100) / 100);
 
         const dolarWithOutTax = floatToReal(price);
         const dolarWithTax = floatToReal(price * finalTaxes);
-        const realWithOutTax = floatToReal(price * toFloat(quotation));
-        const realWithTax = floatToReal(price * finalTaxes * toFloat(quotation));
+        const realWithOutTax = floatToReal(price * stringToFloat(quotation));
+        const realWithTax = floatToReal(price * finalTaxes * stringToFloat(quotation));
         setResults({
             dolarWithOutTax,
             dolarWithTax,
             realWithOutTax,
             realWithTax
         })
-    }, [props.inputData])
+    }, [quotation, typeBuy, price, tax])
+    
     return (
         <div>
             <div
@@ -73,7 +74,7 @@ function Result(props) {
             </div>
             <div className={classes.infos}>
                 Cotação do dólar:
-                <span className={classes.value}> $ 1,00 = R$ {quotation}</span>
+                <span className={classes.value}> $ 1,00 = R$ {floatToReal(quotation)}</span>
             </div>
         </div >
     );
