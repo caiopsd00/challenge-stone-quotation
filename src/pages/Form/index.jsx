@@ -17,7 +17,7 @@ function Form(props) {
     ];
 
     const convertPrice = () => {
-        if(price !== 0 && tax !== 0){
+        if (price !== 0 && tax !== 0) {
             props.setInputData(inputData => ({
                 ...inputData,
                 typeBuy,
@@ -29,74 +29,113 @@ function Form(props) {
     }
 
     return (
-        <div>
-            <div className={classes.label}>
-                <TextInput
-                    label="Dólar"
-                    value={price}
-                    setValue={setPrice}
-                    money
-                    onKeyPress={e => {
-                        if(e.key === 'Enter'){
-                            convertPrice()
-                        }
-                    }}
-                />
-                <TextInput
-                    label="Taxa do Estado"
-                    value={tax}
-                    setValue={setTax}
-                    percent
-                    onKeyPress={e => {
-                        if(e.key === 'Enter'){
-                            convertPrice()
-                        }
-                    }}
-                />
-            </div>
-            <div style={{ paddingTop: 15 }}>
-                <Radio
-                    label="Tipo de compra"
-                    list={listOfTypesBuy}
-                    select={typeBuy}
-                    setSelect={setTypeBuy}
-                />
-            </div>
-            <div
-                onClick={() => convertPrice()}
-                className={
-                    (price !== 0 && tax !== 0) ? 
-                        classes.navButton
-                    :
-                        classes.navButtonDisabled
-                }
-            >
-                <div className={classes.fontButton}>
-                    <SyncAltIcon />
-                    Converter
+        <div className={classes.container}>
+            <div className={classes.inputContainer}>
+                <div className={classes.inputs}>
+                    <TextInput
+                        label="Dólar"
+                        value={price}
+                        setValue={setPrice}
+                        money
+                        onKeyPress={e => {
+                            if (e.key === 'Enter') {
+                                convertPrice()
+                            }
+                        }}
+                    />
+                    <TextInput
+                        label="Taxa do Estado"
+                        value={tax}
+                        setValue={setTax}
+                        percent
+                        onKeyPress={e => {
+                            if (e.key === 'Enter') {
+                                convertPrice()
+                            }
+                        }}
+                    />
+                </div>
+                <div style={{ paddingBottom: 27 }}>
+                    <div>
+                        <Radio
+                            label="Tipo de compra"
+                            list={listOfTypesBuy}
+                            select={typeBuy}
+                            setSelect={setTypeBuy}
+                        />
+                    </div>
                 </div>
             </div>
-            <div className={classes.infos}>
-                Cotação do dólar:
-                <span className={classes.value}> R$ {floatToReal(props.inputData.quotation)} (atualiza a cada 30 segundos)</span>
+            <div className={classes.footerContainer}>
+                <div
+                    onClick={() => convertPrice()}
+                    className={
+                        (price !== 0 && tax !== 0) ?
+                            classes.navButton
+                            :
+                            classes.navButtonDisabled
+                    }
+                >
+                    <div className={classes.fontButton}>
+                        <SyncAltIcon className={classes.sizeIcon} />
+                        Converter
+                    </div>
+                </div>
+                <div className={classes.directionRow}>
+                    <div className={classes.infos}>
+                        Cotação do dólar:
+                    </div>
+                    <div className={classes.value}>
+                        R$ {floatToReal(props.inputData.quotation)} (atualiza a cada 30 segundos)
+                    </div>
+                </div>
             </div>
-        </div >
+        </div>
     );
 }
 
 const useStyles = makeStyles({
+    container: {
+        '@media(max-height: 400px) and (min-width: 1000px)': {
+            display: 'flex', 
+            flexDirection: 'row'
+        },
+    },
+    inputContainer: {
+        '@media(max-height: 549px)': {
+            display: 'flex', 
+            flexDirection: 'row'
+        },
+    },
+    footerContainer: {
+        '@media(max-height: 400px) and (min-width: 1200px), (max-height: 500px) and (min-width: 200px)': {
+            display: 'flex', 
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'center'
+        },
+    },
     navButton: {
         border: '1px solid #008B57',
         borderRadius: 8,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 27,
         width: 149,
         height: 56,
         boxShadow: '0px 8px 4px rgba(13, 17, 27, 0.08)',
         backgroundColor: '#00AB63',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            fontSize: 8,
+            height: 28,
+            width: 84,
+        },
+        '@media(min-height: 550px), (min-width: 770px)': {
+            fontSize: 16,
+            height: 56,
+            width: 168,
+        },
     },
     navButtonDisabled: {
         border: '1px solid #008B57',
@@ -104,34 +143,76 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 27,
         width: 149,
         height: 56,
         boxShadow: '0px 8px 4px rgba(13, 17, 27, 0.08)',
         backgroundColor: '#8C9CAD',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            fontSize: 8,
+            height: 28,
+            width: 84,
+        },
+        '@media(min-height: 550px), (min-width: 770px)': {
+            fontSize: 16,
+            height: 56,
+            width: 168,
+        },
     },
-    label: {
+    inputs: {
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        paddingBottom: 15
     },
     fontButton: {
         width: '100%',
-        fontSize: 16,
         fontFamily: 'Noto Sans JP',
         color: '#FFFFFF',
         display: 'flex',
         justifyContent: 'space-evenly',
-        alignItems: 'center'
+        alignItems: 'center',
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            fontSize: 8,
+        },
+        '@media(min-height: 550px), (min-width: 770px)': {
+            fontSize: 16,
+        },
+    },
+    sizeIcon: {
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            fontSize: 'small',
+        },
+    },
+    directionRow: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        '@media(max-height: 500px), (max-width: 930px)': {
+            width: '60%',
+        },
+        '@media(max-height: 500px)': {
+            marginLeft: 16
+        },
+        '@media(min-height: 400px)': {
+            marginTop: 10
+        },
     },
     infos: {
-        paddingTop: 20, 
+        paddingRight: 5,
         fontFamily: 'Roboto',
         fontWeight: 600,
-        color: '#6E7E90'
+        color: '#6E7E90',
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            fontSize: 10,
+        },
     },
     value: {
         fontWeight: 500,
+        fontFamily: 'Roboto',
+        color: '#6E7E90',
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            fontSize: 10,
+        },
     }
 });
 

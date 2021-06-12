@@ -52,7 +52,7 @@ function Template(props) {
                 <div className={classes.header}>
                     <img 
                         src="../imgs/logo.jpeg" 
-                        style={{ height: 81, width: 163, backgroundColor: '#FFF' }} 
+                        className={classes.logo} 
                         alt="Logotipo da marca" 
                     />
                     <div style={{ marginLeft: 48 }}>
@@ -78,7 +78,7 @@ const useStyles = makeStyles({
         justifyItems: 'flex-end',
         backgroundImage: `url(/imgs/dolarBackground.jpeg)`,
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'right',
+        backgroundPosition: 'right bottom',
         backgroundSize: 'contain',
     },
     container: {
@@ -86,7 +86,6 @@ const useStyles = makeStyles({
         paddingLeft: 20,
         display: 'flex',
         flexDirection: 'column',
-        width: '60%',
         height: '70%'
     },
     header: {
@@ -96,17 +95,41 @@ const useStyles = makeStyles({
     },
     date: {
         fontFamily: 'roboto',
-        fontSize: 18,
         color: '#45505E',
-        fontWeight: 600
+        fontWeight: 600,
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            fontSize: 10,
+        },
+        '@media(min-height: 550px), (min-width: 770px)': {
+            fontSize: 18,
+        },
+    },
+    logo: { 
+        backgroundColor: '#FFF',
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            width: 90.59
+        },
+        '@media(min-height: 550px), (min-width: 770px)': {
+            width: 163
+        },
     },
     dataFont: {
         fontFamily: 'roboto',
-        fontSize: 16.41,
-        color: '#8C9CAD'
+        color: '#8C9CAD',
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            fontSize: 9.12,
+        },
+        '@media(min-height: 550px), (min-width: 770px)': {
+            fontSize: 16.41,
+        },
     },
     contentData: {
-        marginTop: 50,
+        '@media(max-height: 549px)': {
+            marginTop: 20,
+        },
+        '@media(min-height: 550px)': {
+            marginTop: 50,
+        },
         width: '100%',
         height: '90%',
         display: 'flex',

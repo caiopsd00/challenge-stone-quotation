@@ -42,9 +42,15 @@ const useStyles = makeStyles({
     label: {
         fontFamily: 'Roboto',
         color: '#2E3742',
-        paddingBottom: 16,
         fontWeight: 600,
-        fontSize: 18
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            paddingBottom: 8,
+            fontSize: 9,
+        },
+        '@media(min-height: 550px), (min-width: 770px)': {
+            paddingBottom: 16,
+            fontSize: 18,
+        },
     },
     content: {
         display: 'flex',
@@ -58,36 +64,64 @@ const useStyles = makeStyles({
         paddingRight: 20
     },
     radioButtonSelected: {
-        marginRight: 5,
         border: '2px solid #008B57',
-        width: 18,
-        height: 18,
-        borderRadius: 18,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            marginRight: 2,
+            width: 9,
+            height: 9,
+            borderRadius: 9,
+        },
+        '@media(min-height: 550px), (min-width: 770px)': {
+            marginRight: 5,
+            width: 18,
+            height: 18,
+            borderRadius: 18,
+        },
     },
     radioButton: {
-        marginRight: 5,
         border: '2px solid #8C9CAD',
-        width: 18,
-        height: 18,
-        borderRadius: 18,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            marginRight: 2,
+            width: 9,
+            height: 9,
+            borderRadius: 9,
+        },
+        '@media(min-height: 550px), (min-width: 770px)': {
+            marginRight: 5,
+            width: 18,
+            height: 18,
+            borderRadius: 18,
+        },
     },
     check: {
         backgroundColor: '#008B57',
-        width: 12,
-        height: 12,
-        borderRadius: 12
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            width: 6,
+            height: 6,
+            borderRadius: 6,
+        },
+        '@media(min-height: 550px), (min-width: 770px)': {
+            width: 12,
+            height: 12,
+            borderRadius: 12,
+        },
     },
     radioText: {
         color: '#2E3742',
         fontFamily: 'Roboto',
         fontWeight: '500',
-        fontSize: 16,
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            fontSize: 8,
+        },
+        '@media(min-height: 550px), (min-width: 770px)': {
+            fontSize: 16,
+        },
     }
 });
 

@@ -96,29 +96,49 @@ const useStyles = makeStyles({
     label: {
         fontFamily: 'Roboto',
         color: '#2E3742',
-        paddingBottom: 16,
         fontWeight: 600,
-        fontSize: 18
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            fontSize: 9,
+            paddingBottom: 8,
+        },
+        '@media(min-height: 550px), (min-width: 770px)': {
+            fontSize: 18,
+            paddingBottom: 16,
+        },
     },
     input: {
         color: '#2E3742',
         fontFamily: 'Noto Sans JP',
-        fontSize: 16,
         borderRadius: 4,
         boxShadow: '0px 8px 4px 0px #0D111B14',
         border: '1px solid #D7E0EB',
-        height: 56,
-        width: 168
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            fontSize: 8,
+            height: 28,
+            width: 84,
+        },
+        '@media(min-height: 550px), (min-width: 770px)': {
+            fontSize: 16,
+            height: 56,
+            width: 168,
+        },
     },
     cleanInput: {
         color: '#8C9CAD',
         fontFamily: 'Noto Sans JP',
-        fontSize: 16,
         borderRadius: 4,
         boxShadow: '0px 8px 4px 0px #0D111B14',
         border: '1px solid #D7E0EB',
-        height: 56,
-        width: 168
+        '@media(max-height: 549px) and (max-width: 769px)': {
+            fontSize: 8,
+            height: 28,
+            width: 84,
+        },
+        '@media(min-height: 550px), (min-width: 770px)': {
+            fontSize: 16,
+            height: 56,
+            width: 168,
+        },
     }
 });
 
