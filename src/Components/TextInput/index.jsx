@@ -111,7 +111,7 @@ const useStyles = makeStyles({
         width: 168
     },
     cleanInput: {
-        color: 'grey',
+        color: '#8C9CAD',
         fontFamily: 'Noto Sans JP',
         fontSize: 16,
         borderRadius: 4,
