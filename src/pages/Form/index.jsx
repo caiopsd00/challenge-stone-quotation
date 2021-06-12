@@ -75,11 +75,9 @@ function Form(props) {
                     Converter
                 </div>
             </div>
-            <div className={classes.info}>
-                <div className={classes.quotationTitle}>
-                    Cotação do dólar:
-                </div>
-                R$ {props.inputData.quotation} (atualiza a cada 30 segundos)
+            <div className={classes.infos}>
+                Cotação do dólar:
+                <span className={classes.value}> R$ {props.inputData.quotation} (atualiza a cada 30 segundos)</span>
             </div>
         </div >
     );
@@ -125,16 +123,14 @@ const useStyles = makeStyles({
         justifyContent: 'space-evenly',
         alignItems: 'center'
     },
-    info: {
-        paddingTop: 20,
-        fontSize: 14,
-        fontFamily: 'Noto Sans JP',
-        display: 'flex',
-        flexDirection: 'row'
+    infos: {
+        paddingTop: 20, 
+        fontFamily: 'Roboto',
+        fontWeight: 600,
+        color: '#6E7E90'
     },
-    quotationTitle: {
-        fontWeight: '600',
-        paddingRight: 4
+    value: {
+        fontWeight: 500,
     }
 });
 
