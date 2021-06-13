@@ -46,7 +46,7 @@ function Result(props) {
                 className={classes.navButton}
             >
                 <div className={classes.fontButton}>
-                    <ArrowBackIcon style={{ color: '#8C9CAD' }} />
+                    <ArrowBackIcon className={classes.iconBack} />
                     Voltar
                 </div>
             </div>
@@ -110,41 +110,95 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 120,
-        height: 56,
         backgroundColor: '#FFFFFF',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        '@media(max-width: 869px), (max-height: 629px)': {
+            fontSize: 8,
+            width: 60,
+            height: 28,
+        },
+        '@media(min-width: 870 and max-width: 999px), (min-height: 630px)': {
+            fontSize: 12,
+            width: 90,
+            height: 42,
+        },
+        '@media(min-width: 1000px)': {
+            fontSize: 16,
+            width: 120,
+            height: 56,
+        },
     },
     fontButton: {
         width: '100%',
-        fontSize: 16,
         color: '#2E3742',
         fontWeight: '600',
         fontFamily: 'Noto Sans JP',
         display: 'flex',
         justifyContent: 'space-evenly',
-        alignItems: 'center'
+        alignItems: 'center',
+        '@media(max-width: 869px), (max-height: 629px)': {
+            fontSize: 8
+        },
+        '@media(min-width: 870 and max-width: 999px), (min-height: 630px)': {
+            fontSize: 12
+        },
+        '@media(min-width: 1000px)': {
+            fontSize: 16
+        },
+    },
+    iconBack: {
+        color: '#8C9CAD',
+        '@media(max-width: 869px), (max-height: 629px)': {
+            fontSize: 8
+        },
+        '@media(min-width: 870 and max-width: 999px), (min-height: 630px)': {
+            fontSize: 12
+        },
+        '@media(min-width: 1000px)': {
+            fontSize: 16
+        },
     },
     announcement: {
-        paddingTop: 32,
         color: '#45505E',
-        paddingBottom: 8,
         fontWeight: '600',
         fontFamily: 'Noto Sans JP',
-        fontSize: 20
+        '@media(max-width: 869px), (max-height: 629px)': {
+            paddingTop: 8,
+            paddingBottom: 2,
+            fontSize: 10,
+        },
+        '@media(min-width: 870 and max-width: 999px), (min-height: 630px)': {
+            paddingTop: 16,
+            paddingBottom: 4,
+            fontSize: 10,
+        },
+        '@media(min-width: 1000px) and (max-width: 1199px)': {
+            paddingTop: 24,
+            paddingBottom: 6,
+            fontSize: 15,
+        },
+        '@media(min-width: 1200px)': {
+            paddingTop: 32,
+            paddingBottom: 8,
+            fontSize: 20,
+        },
     },
     result: {
         flexWrap: 'wrap',
         fontWeight: '600',
         fontFamily: 'Noto Sans JP',
         color: '#00AB63',
-        '@media(max-width: 599px)': {
-            fontSize: 30,
-            paddingBottom: 10,
+        '@media(max-width: 869px), (max-height: 629px)': {
+            fontSize: 16,
+            paddingBottom: 8,
         },
-        '@media(min-width: 600px) and (max-width: 1199px)': {
+        '@media(min-width: 870 and max-width: 999px), (min-height: 630px)': {
+            fontSize: 32,
+            paddingBottom: 16,
+        },
+        '@media(min-width: 1000px) and (max-width: 1199px)': {
             fontSize: 48,
-            paddingBottom: 20,
+            paddingBottom: 26,
         },
         '@media(min-width: 1200px)': {
             fontSize: 64,
@@ -154,7 +208,13 @@ const useStyles = makeStyles({
     directionRow: {
         display: 'flex',
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        '@media(max-width: 869px)': {
+            fontSize: 10
+        },
+        '@media(min-width: 870px)': {
+            fontSize: 14
+        },
     },
     infos: {
         paddingRight: 5,

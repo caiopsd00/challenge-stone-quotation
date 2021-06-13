@@ -97,37 +97,37 @@ const useStyles = makeStyles({
         fontFamily: 'roboto',
         color: '#45505E',
         fontWeight: 600,
-        '@media(max-height: 549px) and (max-width: 769px)': {
+        '@media(max-height: 629px) and (max-width: 769px)': {
             fontSize: 10,
         },
-        '@media(min-height: 550px), (min-width: 770px)': {
+        '@media(min-height: 630px), (min-width: 770px)': {
             fontSize: 18,
         },
     },
     logo: { 
         backgroundColor: '#FFF',
-        '@media(max-height: 549px) and (max-width: 769px)': {
+        '@media(max-height: 629px) and (max-width: 769px)': {
             width: 90.59
         },
-        '@media(min-height: 550px), (min-width: 770px)': {
+        '@media(min-height: 630px), (min-width: 770px)': {
             width: 163
         },
     },
     dataFont: {
         fontFamily: 'roboto',
         color: '#8C9CAD',
-        '@media(max-height: 549px) and (max-width: 769px)': {
+        '@media(max-height: 629px) and (max-width: 769px)': {
             fontSize: 9.12,
         },
-        '@media(min-height: 550px), (min-width: 770px)': {
+        '@media(min-height: 630px), (min-width: 770px)': {
             fontSize: 16.41,
         },
     },
     contentData: {
-        '@media(max-height: 549px)': {
+        '@media(max-height: 629px)': {
             marginTop: 20,
         },
-        '@media(min-height: 550px)': {
+        '@media(min-height: 630px)': {
             marginTop: 50,
         },
         width: '100%',
@@ -135,7 +135,7 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        justifyContent: 'center'
+        justifyContent: 'flex-start'
     }
 });
 
