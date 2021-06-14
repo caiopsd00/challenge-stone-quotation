@@ -74,6 +74,7 @@ function TextInput(props) {
                     return true;
                 }else{
                     getNumbers(newFormatted);
+                    return false;
                 }
             }
             if(biggerWord[biggerIterator] === minorWord[minorIterator]){
