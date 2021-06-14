@@ -34,12 +34,6 @@ function TextInput(props) {
         let finalValue = value;
         if (value === '') {
             finalValue = 0;
-            if (props.money) {
-                setFormattedValue('$0,00');
-            }
-            if (props.percent) {
-                setFormattedValue('0,00%');
-            }
         } else {
             let cleanValue = value;
             if (value[0] === '0') {
@@ -50,22 +44,67 @@ function TextInput(props) {
         props.setValue((parseFloat(finalValue) / 100));
     }
 
+    const getNumbers = (newFormatted) => {
+        let newWord = "";
+        for(let newIterator = 0; newIterator <= newFormatted.length; newIterator++){
+            const letter = parseInt(newFormatted[newIterator]);
+            if((letter === 0 && newWord.length > 0) || letter > 0 || letter <= 9){
+                newWord += letter;
+            }
+        }
+        if(newWord !== ''){
+            props.setValue((parseFloat(newWord) / 100));
+        }else{
+            props.setValue(0);
+        }
+    }
+
+    const verifyPaste = (oldFormatted, newFormatted) => {
+        let biggerWord = oldFormatted;
+        let minorWord = newFormatted;
+        if(oldFormatted.length < newFormatted.length){
+            biggerWord = newFormatted;
+            minorWord = oldFormatted;
+        }
+        let differentLetters = 0;
+        let minorIterator = 0;
+        for(let biggerIterator = 0; biggerIterator <= biggerWord.length; biggerIterator++){
+            if(minorIterator === minorWord.length){
+                if(biggerIterator + 1 === biggerWord.length || biggerIterator === biggerWord.length){
+                    return true;
+                }else{
+                    getNumbers(newFormatted);
+                }
+            }
+            if(biggerWord[biggerIterator] === minorWord[minorIterator]){
+                minorIterator++;
+            }else if(differentLetters < 1){
+                differentLetters++;
+            }else{
+                getNumbers(newFormatted);
+                return false;
+            }
+        }
+    }
+
     const handleChange = (newValue) => {
         const oldValue = parseString(props.value);
-        if (formattedValue.length > newValue.length) {
-            removeZeros(oldValue.slice(0, -1));
-        } else {
-            let iteratorOld = (formattedValue.length - 1);
-            for (let iterator = (newValue.length - 1); iterator >= 0; iterator--) {
-                if (newValue[iterator] !== formattedValue[iteratorOld]) {
-                    if (newValue[iterator] !== ' ') {
-                        if (Number.isInteger(parseInt(newValue[iterator]))) {
-                            removeZeros(oldValue + newValue[iterator]);
+        if(verifyPaste(formattedValue, newValue)){
+            if (formattedValue.length > newValue.length) {
+                removeZeros(oldValue.slice(0, -1));
+            } else {
+                let iteratorOld = (formattedValue.length - 1);
+                for (let iterator = (newValue.length - 1); iterator >= 0; iterator--) {
+                    if (newValue[iterator] !== formattedValue[iteratorOld]) {
+                        if (newValue[iterator] !== ' ') {
+                            if (Number.isInteger(parseInt(newValue[iterator]))) {
+                                removeZeros(oldValue + newValue[iterator]);
+                            }
                         }
+                        break;
                     }
-                    break;
+                    iteratorOld--;
                 }
-                iteratorOld--;
             }
         }
     }
