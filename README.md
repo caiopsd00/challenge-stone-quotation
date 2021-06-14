@@ -22,7 +22,9 @@ Rodando tal comando, você tera o aplicativo disponível no ser dominio local, p
 ####[http://localhost:3000](http://localhost:3000)
 
 Até que se encerre este comando, sempre que atualizar o código, o aplicativo se atualizará conforme o mesmo.
-### Status do Código
+
+### Contributing
+Este projeto segue as [Diretrizes para Contributors Stone](https://github.com/stone-payments/stoneco-best-practices/blob/master/contributing/README_pt.md)
 
 ### Licença
 MIT License
