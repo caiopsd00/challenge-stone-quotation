@@ -21,18 +21,15 @@ function TextInput(props) {
     }
 
     // Formata o valor pelo formato do input
-    const formatValue = (value) => {
+    useEffect(() => {
+        const stringValue = parseString(props.value);
         if (props.money) {
-            setFormattedValue('$' + inputToReal(value));
+            setFormattedValue('$' + inputToReal(stringValue));
         }
         if (props.percent) {
-            setFormattedValue(inputToReal(value) + '%');
+            setFormattedValue(inputToReal(stringValue) + '%');
         }
-    }
-
-    useEffect(() => {
-        formatValue(parseString(props.value));
-    }, [props.value]);
+    }, [props.value, props.money, props.percent]);
 
 
     // Verificando a existencia de zeros a esquera e removendo caso haja, a menos que seja vazio.
