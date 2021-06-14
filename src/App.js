@@ -13,6 +13,7 @@ function App() {
     tax: 0
   })
 
+  // Atualizando cotação do dolar
   useEffect(() => {
     if (pageForm) {
       async function getData() {
@@ -26,8 +27,10 @@ function App() {
   return (
     <Template>
       {pageForm ? (
+        // Editando valores de entrada
         <Form setPageForm={setPageForm} inputData={inputData} setInputData={setInputData} />
       ) : (
+        // Mostrando resultado
         <Result setPageForm={setPageForm} inputData={inputData} />
       )}
     </Template>

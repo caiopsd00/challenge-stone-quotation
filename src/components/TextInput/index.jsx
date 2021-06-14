@@ -7,6 +7,9 @@ function TextInput(props) {
     const classes = useStyles();
     const [formattedValue, setFormattedValue] = useState('0');
 
+    // Esta função corrige um bug javaScript.
+    // Ex.: 125487 * 100 = 12548700,000000001
+    // Esta função verifica o resultado e resolve o bug, voltando o valor para 12548700
     const parseString = (value) => {
         const newValue = (value * 100);
         const ceilValue = Math.ceil(newValue);
@@ -17,6 +20,7 @@ function TextInput(props) {
         }
     }
 
+    // Formata o valor pelo formato do input
     const formatValue = (value) => {
         if (props.money) {
             setFormattedValue('$' + inputToReal(value));
@@ -30,6 +34,9 @@ function TextInput(props) {
         formatValue(parseString(props.value));
     }, [props.value]);
 
+
+    // Verificando a existencia de zeros a esquera e removendo caso haja, a menos que seja vazio.
+    // Neste caso o valor estabiliza em 0
     const removeZeros = (value) => {
         let finalValue = value;
         if (value === '') {
@@ -44,6 +51,8 @@ function TextInput(props) {
         props.setValue((parseFloat(finalValue) / 100));
     }
 
+    // Filtra de uma palavra colada, somente os numeros para posteriormente formatar 
+    // no padrão do input
     const getNumbers = (newFormatted) => {
         let newWord = "";
         for(let newIterator = 0; newIterator <= newFormatted.length; newIterator++){
@@ -59,6 +68,8 @@ function TextInput(props) {
         }
     }
 
+    // Verificando se a alteração foi uma tentativa de colar um texto com mais de 1 caracter 
+    // se sim, será adicionado ou removido na posição escolhida
     const verifyPaste = (oldFormatted, newFormatted) => {
         let biggerWord = oldFormatted;
         let minorWord = newFormatted;
@@ -88,6 +99,8 @@ function TextInput(props) {
         }
     }
 
+    // Verificando se foi adicionado um caracter ou removido, independente da posição, 
+    // será adicionado ou removido na ultima posição
     const handleChange = (newValue) => {
         const oldValue = parseString(props.value);
         if(verifyPaste(formattedValue, newValue)){
