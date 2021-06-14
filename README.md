@@ -19,7 +19,7 @@ Rodando tal comando, você irá instalar todas as bibliotecas que o projeto depe
 
 Rodando tal comando, você tera o aplicativo disponível no ser dominio local, porta 3000:
 
-####[http://localhost:3000](http://localhost:3000)
+[http://localhost:3000](http://localhost:3000)
 
 Até que se encerre este comando, sempre que atualizar o código, o aplicativo se atualizará conforme o mesmo.
 
