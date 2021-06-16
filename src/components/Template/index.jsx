@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
+import { smallScreen, largeScreen } from '../../commonStyles'
 
 const formatMonth = (date) => {
     const numericMonth = date.getUTCMonth();
@@ -97,37 +98,37 @@ const useStyles = makeStyles({
         fontFamily: 'roboto',
         color: '#45505E',
         fontWeight: 600,
-        '@media(max-height: 629px) and (max-width: 769px)': {
+        [smallScreen]: {
             fontSize: 10,
         },
-        '@media(min-height: 630px), (min-width: 770px)': {
+        [largeScreen]: {
             fontSize: 18,
         },
     },
     logo: { 
         backgroundColor: '#FFF',
-        '@media(max-height: 629px) and (max-width: 769px)': {
+        [smallScreen]: {
             width: 90.59
         },
-        '@media(min-height: 630px), (min-width: 770px)': {
+        [largeScreen]: {
             width: 163
         },
     },
     dataFont: {
         fontFamily: 'roboto',
         color: '#8C9CAD',
-        '@media(max-height: 629px) and (max-width: 769px)': {
+        [smallScreen]: {
             fontSize: 9.12,
         },
-        '@media(min-height: 630px), (min-width: 770px)': {
+        [largeScreen]: {
             fontSize: 16.41,
         },
     },
     contentData: {
-        '@media(max-height: 629px)': {
+        [smallScreen]: {
             marginTop: 20,
         },
-        '@media(min-height: 630px)': {
+        [largeScreen]: {
             marginTop: 50,
         },
         width: '100%',

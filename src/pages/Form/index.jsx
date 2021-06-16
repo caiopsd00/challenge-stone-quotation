@@ -4,6 +4,7 @@ import Radio from '../../components/Radio';
 import { makeStyles } from '@material-ui/core/styles';
 import SyncAltIcon from '@material-ui/icons/SyncAlt';
 import { floatToReal } from '../../helpers';
+import { smallScreen, largeScreen } from '../../commonStyles'
 
 function Form(props) {
     const classes = useStyles();
@@ -69,12 +70,8 @@ function Form(props) {
             <div className={classes.footerContainer}>
                 <div
                     onClick={() => convertPrice()}
-                    className={
-                        (price !== 0 && tax !== 0) ?
-                            classes.navButton
-                            :
-                            classes.navButtonDisabled
-                    }
+                    className={classes.navButton}
+                    style={(price === 0 || tax === 0) ? {backgroundColor: '#8C9CAD'} : {}}
                 >
                     <div className={classes.fontButton}>
                         <SyncAltIcon className={classes.sizeIcon} />
@@ -126,34 +123,12 @@ const useStyles = makeStyles({
         boxShadow: '0px 8px 4px rgba(13, 17, 27, 0.08)',
         backgroundColor: '#00AB63',
         cursor: 'pointer',
-        '@media(max-height: 549px) and (max-width: 769px)': {
+        [smallScreen]: {
             fontSize: 8,
             height: 28,
             width: 84,
         },
-        '@media(min-height: 550px), (min-width: 770px)': {
-            fontSize: 16,
-            height: 56,
-            width: 168,
-        },
-    },
-    navButtonDisabled: {
-        border: '1px solid #008B57',
-        borderRadius: 8,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: 149,
-        height: 56,
-        boxShadow: '0px 8px 4px rgba(13, 17, 27, 0.08)',
-        backgroundColor: '#8C9CAD',
-        cursor: 'pointer',
-        '@media(max-height: 549px) and (max-width: 769px)': {
-            fontSize: 8,
-            height: 28,
-            width: 84,
-        },
-        '@media(min-height: 550px), (min-width: 770px)': {
+        [largeScreen]: {
             fontSize: 16,
             height: 56,
             width: 168,
@@ -171,17 +146,17 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        '@media(max-height: 549px) and (max-width: 769px)': {
+        [smallScreen]: {
             fontSize: 8,
         },
-        '@media(min-height: 550px), (min-width: 770px)': {
+        [largeScreen]: {
             fontSize: 16,
         },
     },
     sizeIcon: {
-        '@media(max-height: 549px) and (max-width: 769px)': {
+        [smallScreen]: {
             fontSize: 'small',
-        },
+        }
     },
     directionRow: {
         display: 'flex',
@@ -202,7 +177,7 @@ const useStyles = makeStyles({
         fontFamily: 'Roboto',
         fontWeight: 600,
         color: '#6E7E90',
-        '@media(max-height: 549px) and (max-width: 769px)': {
+        [smallScreen]: {
             fontSize: 10,
         },
     },
@@ -210,7 +185,7 @@ const useStyles = makeStyles({
         fontWeight: 500,
         fontFamily: 'Roboto',
         color: '#6E7E90',
-        '@media(max-height: 549px) and (max-width: 769px)': {
+        [smallScreen]: {
             fontSize: 10,
         },
     }

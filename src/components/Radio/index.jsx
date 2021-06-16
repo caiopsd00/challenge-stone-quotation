@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { smallScreen, largeScreen } from '../../commonStyles'
 
 function Radio(props) {
     const classes = useStyles();
@@ -15,12 +16,10 @@ function Radio(props) {
                         key={item.value}
                         className={classes.radio} onClick={() => props.setSelect(item.value)}
                     >
-                        <div className={
-                            props.select === item.value ?
-                                classes.radioButtonSelected
-                            :
-                                classes.radioButton
-                        }>
+                        <div 
+                            className={classes.radioButton}
+                            style={props.select === item.value ? {border: '2px solid #008B57'} : {}}
+                        >
                             {props.select === item.value ? (
                                 <div className={classes.check} />
                             ) : (
@@ -43,11 +42,11 @@ const useStyles = makeStyles({
         fontFamily: 'Roboto',
         color: '#2E3742',
         fontWeight: 600,
-        '@media(max-height: 549px) and (max-width: 769px)': {
+        [smallScreen]: {
             paddingBottom: 8,
             fontSize: 9,
         },
-        '@media(min-height: 550px), (min-width: 770px)': {
+        [largeScreen]: {
             paddingBottom: 16,
             fontSize: 18,
         },
@@ -63,36 +62,18 @@ const useStyles = makeStyles({
         alignItems: 'center',
         paddingRight: 20
     },
-    radioButtonSelected: {
-        border: '2px solid #008B57',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        '@media(max-height: 549px) and (max-width: 769px)': {
-            marginRight: 2,
-            width: 9,
-            height: 9,
-            borderRadius: 9,
-        },
-        '@media(min-height: 550px), (min-width: 770px)': {
-            marginRight: 5,
-            width: 18,
-            height: 18,
-            borderRadius: 18,
-        },
-    },
     radioButton: {
         border: '2px solid #8C9CAD',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        '@media(max-height: 549px) and (max-width: 769px)': {
+        [smallScreen]: {
             marginRight: 2,
             width: 9,
             height: 9,
             borderRadius: 9,
         },
-        '@media(min-height: 550px), (min-width: 770px)': {
+        [largeScreen]: {
             marginRight: 5,
             width: 18,
             height: 18,
@@ -101,12 +82,12 @@ const useStyles = makeStyles({
     },
     check: {
         backgroundColor: '#008B57',
-        '@media(max-height: 549px) and (max-width: 769px)': {
+        [smallScreen]: {
             width: 6,
             height: 6,
             borderRadius: 6,
         },
-        '@media(min-height: 550px), (min-width: 770px)': {
+        [largeScreen]: {
             width: 12,
             height: 12,
             borderRadius: 12,
@@ -116,10 +97,10 @@ const useStyles = makeStyles({
         color: '#2E3742',
         fontFamily: 'Roboto',
         fontWeight: '500',
-        '@media(max-height: 549px) and (max-width: 769px)': {
+        [smallScreen]: {
             fontSize: 8,
         },
-        '@media(min-height: 550px), (min-width: 770px)': {
+        [largeScreen]: {
             fontSize: 16,
         },
     }

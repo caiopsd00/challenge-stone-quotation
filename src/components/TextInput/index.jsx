@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import { makeStyles } from '@material-ui/core/styles';
 import { inputToReal } from '../../helpers';
+import { smallScreen, largeScreen } from '../../commonStyles'
 
 function TextInput(props) {
     const classes = useStyles();
@@ -126,7 +127,8 @@ function TextInput(props) {
                 {props.label}
             </div>
             <OutlinedInput
-                className={props.value === 0 ? classes.cleanInput : classes.input}
+                className={classes.input}
+                style={props.value === 0 ? {color: '#8C9CAD'} : {}}
                 value={formattedValue}
                 onChange={event => {
                     if (event.target.value.length <= 17) {
@@ -147,11 +149,11 @@ const useStyles = makeStyles({
         fontFamily: 'Roboto',
         color: '#2E3742',
         fontWeight: 600,
-        '@media(max-height: 549px) and (max-width: 769px)': {
+        [smallScreen]: {
             fontSize: 9,
             paddingBottom: 8,
         },
-        '@media(min-height: 550px), (min-width: 770px)': {
+        [largeScreen]: {
             fontSize: 18,
             paddingBottom: 16,
         },
@@ -162,29 +164,12 @@ const useStyles = makeStyles({
         borderRadius: 4,
         boxShadow: '0px 8px 4px 0px #0D111B14',
         border: '1px solid #D7E0EB',
-        '@media(max-height: 549px) and (max-width: 769px)': {
+        [smallScreen]: {
             fontSize: 8,
             height: 28,
             width: 84,
         },
-        '@media(min-height: 550px), (min-width: 770px)': {
-            fontSize: 16,
-            height: 56,
-            width: 168,
-        },
-    },
-    cleanInput: {
-        color: '#8C9CAD',
-        fontFamily: 'Noto Sans JP',
-        borderRadius: 4,
-        boxShadow: '0px 8px 4px 0px #0D111B14',
-        border: '1px solid #D7E0EB',
-        '@media(max-height: 549px) and (max-width: 769px)': {
-            fontSize: 8,
-            height: 28,
-            width: 84,
-        },
-        '@media(min-height: 550px), (min-width: 770px)': {
+        [largeScreen]: {
             fontSize: 16,
             height: 56,
             width: 168,
